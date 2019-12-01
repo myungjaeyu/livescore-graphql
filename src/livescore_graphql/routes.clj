@@ -1,7 +1,8 @@
 (ns livescore-graphql.routes
-  (:require [compojure.core :refer [defroutes GET]]
+  (:require [compojure.core :refer [defroutes POST]]
+            [livescore-graphql.graphql.core :refer [execute]]
             [ring.util.response :refer [response]]))
 
 (defroutes routes
-  (GET "/" []
-    (response {:message "index"})))
+  (POST "/graphql" [query]
+    (response (execute query))))
